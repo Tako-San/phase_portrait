@@ -58,6 +58,7 @@ def x1_points():
 
 def main():
     x1_res = x1_points()
+    tkinter._test()
     #print(x1_res)
 
     plt.xlabel("x")
