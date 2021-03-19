@@ -32,7 +32,12 @@ def get_data():
   for key in entries.keys():
     string = entries[key].get()
     if len(string) == 0 or not string.lstrip('-').replace('.','',1).isdigit():
-      messagebox.showinfo(title='Данные некорректны', message='Все поля должны быть заполнены')
+      msg = f'Значение поля {key} некорректно: '
+      if len(string) == 0:
+        msg += 'поле не должно быть пустым'
+      else:
+        msg += 'поле должно содержать только число'
+      messagebox.showinfo(title='Данные некорректны', message=msg)
       is_raised = True
       break
 
