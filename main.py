@@ -18,7 +18,6 @@ def main():
   btn.grid(column=1, row=len(gui.entries))
 
   gui.window.mainloop()
-  #print(gui.start_conds)
 
 if __name__ == '__main__':
   main()
