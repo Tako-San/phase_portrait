@@ -100,7 +100,7 @@ plt.axis('off')
 
 # Вызов анимации.
 anim = animation.FuncAnimation(fig, x1_points, init_func=init,
-                               frames=5000, interval=20, blit=True)
+                               frames=1000, interval=20, blit=True)
 plt.show()
 # Сохраняем анимацию как gif файл
 #anim.save('x1_-1_1_1.gif', writer='imagemagick')
