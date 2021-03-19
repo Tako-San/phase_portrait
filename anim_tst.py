@@ -5,9 +5,8 @@ from collections import deque
 import matplotlib.pyplot as plt  # $ pip install matplotlib
 import matplotlib.animation as animation
 
-npoints = 30
-x = deque([0], maxlen=npoints)
-y = deque([0], maxlen=npoints)
+x = list([0])
+y = list([0])
 fig, ax = plt.subplots()
 [line] = ax.step(x, y)
 
