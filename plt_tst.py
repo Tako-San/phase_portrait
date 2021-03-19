@@ -1,7 +1,13 @@
-import matplotlib.pyplot as plt
 import numpy as np
 
-t = np.arange(0, 20, 0.01)
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+x = list([0])
+y = list([0])
+fig, ax = plt.subplots()
+[line] = ax.step(x, y)
+
 
 c = 100
 m = 0.1
@@ -11,14 +17,14 @@ w1 = np.sqrt(c / m)
 w2 = np.sqrt(c * (n + 2) / (m * n))
 
 x1_0 = -1
-x2_0 = 1
+x2_0 = 0
 x3_0 = 1
 
 x1_0_dot = 0
 x2_0_dot = 0
 x3_0_dot = 0
 
-def calc_osc():
+def calc_osc(t):
 
     ### start conds for theta
     theta1_0 = (x1_0 + n * x2_0 + x3_0) / (2 + n)
@@ -49,22 +55,36 @@ def calc_osc():
 
     return osc_arr, dot_osc_arr
 
-def x1_points():
-    osc_arr, dot_osc_arr = calc_osc()
+def x1_points(frame):
+    osc_arr, dot_osc_arr = calc_osc(frame)
     x1 = np.array([1, 1, 1]) @ osc_arr
     x1_dot = np.array([1, 1, 1]) @ dot_osc_arr
-    return x1, x1_dot
+
+    x.append(x1)  # update data
+    y.append(x1_dot)
+
+    line.set_xdata(x)  # update plot data
+    line.set_ydata(y)
+
+    ax.relim()  # update axes limits
+    ax.autoscale_view(True, True, True)
+    return line, ax
 
 
 def main():
+
     x1_res = x1_points()
     tkinter._test()
     #print(x1_res)
 
+
     plt.xlabel("x")
     plt.ylabel("dx/dt")
 
-    plt.plot(x1_res[0], x1_res[1])
+    #plt.plot(x1_res[0], x1_res[1])
+    #plt.show()
+
+    ani = animation.FuncAnimation(fig, x1_points, frames=np.arange(0, 20, 0.001))
     plt.show()
 
 
