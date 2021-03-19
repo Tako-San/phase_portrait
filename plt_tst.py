@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-t = np.linspace(0, 10000000)
+t = np.arange(0, 1000, 0.1)
 
 c = 100
 m = 0.1
