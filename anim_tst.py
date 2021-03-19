@@ -11,6 +11,7 @@ fig, ax = plt.subplots()
 [line] = ax.step(x, y)
 
 
+
 def update(dy):
     x.append(x[-1] + 1)  # update data
     y.append(y[-1] + dy)
