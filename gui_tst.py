@@ -3,7 +3,7 @@ from tkinter import messagebox
 
 window = tk.Tk()
 window.title('Здесь название')
-window.geometry("300x300")
+window.geometry("500x500")
 frmMain = tk.Frame(window)
 
 entries = []
