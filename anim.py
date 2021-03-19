@@ -1,6 +1,8 @@
+import numpy as np
+
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import numpy as np
+
 
 def draw(start_conds):
     plt.style.use('dark_background')
@@ -28,7 +30,7 @@ def draw(start_conds):
 
     def x1_points(frame, start_conds):
 
-        osc_arr, dot_osc_arr = calc_osc(frame * 0.005, start_conds)
+        osc_arr, dot_osc_arr = calc_osc(frame * 0.01, start_conds)
 
         x1 = np.array([1, 1, 1]) @ osc_arr
         x1_dot = np.array([1, 1, 1]) @ dot_osc_arr
@@ -43,7 +45,7 @@ def draw(start_conds):
 
     # Вызов анимации.
     anim = animation.FuncAnimation(fig, x1_points, init_func=init, fargs=(start_conds,),
-                                frames=5000, interval=10, blit=True)
+                                frames=2500, interval=10, blit=True)
     
     plt.show()
     # Сохраняем анимацию как gif файл
