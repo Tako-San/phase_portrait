@@ -12,16 +12,6 @@ entries = {}
 def_conds = {}
 start_conds = {}
 
-class ErrorWindow:
-    def __init__(self,error_message):
-        self.error_window = tk.Tk()
-        self.error_window.withdraw()
-        messagebox.showerror("ERROR",error_message, parent=window)
-
-
-    def __del__(self):
-      self.error_window.destroy()
-
 def entry_create(name, default=0):
   ## Greeting string
   greeting = tk.Label(window, text=f'{name} = ', font=("Consolas", 20))
@@ -42,7 +32,7 @@ def get_data():
   for key in entries.keys():
     string = entries[key].get()
     if len(string) == 0 or not string.lstrip('-').replace('.','',1).isdigit():
-    #e('Все поля должны быть заполнены')
+      messagebox.showinfo(title='Данные некорректны', message='Все поля должны быть заполнены')
       is_raised = True
       break
 
