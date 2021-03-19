@@ -6,8 +6,8 @@ window.title('Здесь название')
 window.geometry("500x500")
 frmMain = tk.Frame(window)
 
-entries = []
-start_conds = []
+entries = {}
+start_conds = {}
 
 class ErrorWindow:
     def __init__(self,error_message):
@@ -19,13 +19,13 @@ class ErrorWindow:
     def __del__(self):
       self.error_window.destroy()
 
-def entry_create(name, rw):
+def entry_create(name):
   ## Greeting string
   greeting = tk.Label(window, text=f'{name} = ', font=("Consolas", 20))
-  greeting.grid(column=0, row=rw)
+  entries[name] = tk.Entry(window)
 
-  entries.append(tk.Entry(window))
-  entries[len(entries) - 1].grid(column=1, row=rw)
+  greeting.grid(column=0, row=len(entries) - 1)
+  entries[name].grid(column=1, row=len(entries) - 1)
 
 
 def get_data():
@@ -34,15 +34,15 @@ def get_data():
   is_raised = False
   err_w = None
 
-  for i in range(6):
-    string = entries[i].get()
+  for key in entries.keys():
+    string = entries[key].get()
     if len(string) == 0 or not string.replace('.','',1).isdigit():
     #e('Все поля должны быть заполнены')
       is_raised = True
       break
 
     val = float(string)
-    start_conds.append(val)
+    start_conds[key] = val
 
     
   if is_raised:
@@ -51,23 +51,24 @@ def get_data():
       el.delete(0, tk.END)
     return
 
-  draw()
+  ## here we call draw(start_cond)
 
 
 ##field for input
 
 def main():
-  entry_create('x0 1', 0)
-  entry_create('x0 2', 1)
-  entry_create('x0 3', 2)
-  entry_create('dot x0 1', 3)
-  entry_create('dot x0 2', 4)
-  entry_create('dot x0 3', 5)
-
-  entries[0].focus()
+  entry_create('c')
+  entry_create('m')
+  entry_create('n')
+  entry_create('x1_0')
+  entry_create('x2_0')
+  entry_create('x3_0')
+  entry_create('x1_0_dot')
+  entry_create('x2_0_dot')
+  entry_create('x3_0_dot')
 
   btn = tk.Button(window, text="Старт", font=('Consolas', 20), command=get_data)
-  btn.grid(column=1, row=6)
+  btn.grid(column=1, row=len(entries))
 
   window.mainloop()
   print(start_conds)
