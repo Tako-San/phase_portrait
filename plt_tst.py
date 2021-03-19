@@ -29,17 +29,6 @@ theta1_0_dot = (x1_0_dot + n * x2_0_dot + x3_0_dot) / (2 + n)
 theta2_0_dot = (x1_0_dot - x3_0_dot) / 2
 theta3_0_dot = (n * x1_0_dot - 2 * n * x2_0_dot + n * x3_0_dot) / (4 + 2 * n)
 
-
-
-d1 = 1
-d2 = 1
-d3 = 1
-
-psi1 = 0.7
-psi2 = 0.4
-
-x0 = 0.1
-
 osc_arr = np.array(
     [
         theta1_0 + theta1_0_dot * t,
